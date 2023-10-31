@@ -1,56 +1,48 @@
-# Proyecto de Recomendación de Videojuegos para Steam
+![## Steam Video Game Recommendation Project](Data\logo-henry-white-lg.png)
 
-## Descripción del Problema
+# Steam Video Game Recommendation Project
 
-**Contexto:** Como Data Scientist en Steam, una plataforma multinacional de videojuegos, enfrentamos el desafío de crear un sistema de recomendación de videojuegos para usuarios. Aunque nuestro modelo de recomendación ha arrojado métricas prometedoras, ahora debemos llevarlo al mundo real y enfrentar problemas de madurez en los datos y la falta de automatización en los procesos.
+## Problem
+Context: As a data scientist at Steam, a multinational video game platform, we are faced with the challenge of creating a video game recommendation system for users. Our recommendation model has shown promising metrics, but now we need to bring it to the real world and face problems with data maturity and lack of process automation.
 
-**Rol a Desarrollar:** Como Data Scientist en Steam, nuestra misión es diseñar un sistema de recomendación de videojuegos que satisfaga las necesidades de los usuarios y la empresa. El proyecto abarca desde el tratamiento y recolección de datos hasta el entrenamiento y mantenimiento del modelo de Machine Learning.
+Role: As a data scientist at Steam, our mission is to design a video game recommendation system that meets the needs of users and the company. The project encompasses everything from data collection and processing to machine learning model training and maintenance.
 
-## Propuesta de Trabajo
+## Work Proposal
+ETL (Extract, Transform, Load)
 
-### ETL (Extract, Transform, Load)
+Transformations: In this MVP, we focused on reading the dataset in the correct format and removing unnecessary columns to optimize the API and model training.
+Feature engineering: We created the sentiment_analysis column by applying sentiment analysis with NLP to user reviews. The values are 0 (bad), 1 (neutral), or 2 (positive). If analysis is not possible, 1 is assigned.
+API development (FastAPI)
 
-- **Transformaciones:** En este MVP, priorizamos la lectura del dataset con el formato correcto y la eliminación de columnas innecesarias para optimizar la API y el entrenamiento del modelo.
+We propose exposing the data through an API using the FastAPI framework. The queries we implemented include:
 
-- **Feature Engineering:** Creamos la columna 'sentiment_analysis' aplicando análisis de sentimiento con NLP a las reseñas de los usuarios. Los valores son 0 (malo), 1 (neutral) o 2 (positivo). Si no es posible realizar el análisis, se asigna 1.
+1. developer(developer: str): Returns the number of items and the percentage of free content by year by developer.
 
-### Desarrollo de la API (FastAPI)
+2. userdata(User_id: str): Provides information on the money spent by the user, the recommendation percentage, and the number of items.
 
-Proponemos exponer los datos a través de una API utilizando el framework FastAPI. Las consultas que implementamos incluyen:
+3. best_developer_year(year: int): Returns the top 3 developers with the MOST user-recommended games for the given year.
 
-- `developer(desarrollador: str)`: Devuelve la cantidad de items y el porcentaje de contenido gratuito por año según la empresa desarrolladora.
+4. developer_reviews_analysis(developer: str): Provides statistics on user reviews categorized as positive or negative for a developer.
 
-- `userdata(User_id: str)`: Proporciona información sobre el dinero gastado por el usuario, el porcentaje de recomendación y la cantidad de items.
+## Deployment
 
-- `UserForGenre(genero: str)`: Encuentra al usuario con más horas jugadas para un género dado y muestra una lista de las horas jugadas por año de lanzamiento.
+The deployment is done on Render, which allows the API to be accessible from any device with an internet connection.
 
-- `best_developer_year(año: int)`: Devuelve el top 3 de desarrolladores con juegos MÁS recomendados por usuarios para el año dado.
+## Exploratory Data Analysis (EDA)
 
-- `developer_reviews_analysis(desarrolladora: str)`: Ofrece estadísticas de reseñas de usuarios categorizadas como positivas o negativas para una empresa desarrolladora.
+EDA focuses on investigating relationships between variables, detecting outliers, and exploring interesting patterns in the dataset. The analysis includes generating word clouds to understand the most frequent words in game titles.
 
-### Deployment
+## Machine Learning Model
 
-El despliegue se realiza en Render, lo que permite que la API sea accesible desde cualquier dispositivo con conexión a Internet.
+The machine learning model is able to recommend games to users:
 
-### Análisis Exploratorio de Datos (EDA)
+User-Item Recommendation System: Takes a user and returns a list of recommended games for that user.
+Project
+Repository: The repository was verified to contain appropriate file names and an organized structure. The README.md provides a clear guide to the project.
+Requirements compliance: It was checked whether the approval requirements mentioned in the work proposal were met.
+Presentation Video
+A video with a maximum duration of 7 minutes is essential to demonstrate the operation of the API and explain the machine learning model used.
 
-El EDA se enfoca en investigar relaciones entre variables, detectar outliers y explorar patrones interesantes en el dataset. El análisis incluye la generación de nubes de palabras para comprender las palabras más frecuentes en los títulos de los juegos.
+# Conclusion
 
-### Modelo de Aprendizaje Automático
-
-El modelo de Machine Learning es capaz de recomendar juegos a los usuarios:
-
-- **Sistema de Recomendación Usuario-Ítem:** Recibe un usuario y devuelve una lista de juegos recomendados para ese usuario.
-
-## Proyecto
-
-- **Repositorio:** Se verificó que el repositorio contuviera nombres de archivo adecuados y una estructura organizada. El `README.md` proporciona una guía clara del proyecto.
-
-- **Cumplimiento de Requerimientos:** Se comprobó si se cumplieron los requerimientos de aprobación mencionados en la propuesta de trabajo.
-
-## Video de Presentación
-
-Un video con una duración máxima de 7 minutos es esencial para demostrar el funcionamiento de la API y explicar el modelo de Machine Learning utilizado.
-
-
-El MVP aprobatorio está listo para ser consumido a través de RENDER y cumple con todos los criterios mencionados. Este proyecto me permitio mostrar mis habilidades en ETL, FastAPI, EDA y Machine Learning.
+The approved MVP is ready to be consumed through RENDER and meets all of the mentioned criteria. This project allowed us to showcase our skills in ETL, FastAPI, EDA, and machine learning.
