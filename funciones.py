@@ -7,6 +7,8 @@ df_user_reviews = pd.read_parquet('Data/user_reviews.parquet')
 
 df_user_items= pd.read_parquet('Data/user_items.parquet')
 
+test = pd.read_parquet('Data/ML.parquet')
+
 df_user_items = pd.DataFrame(df_user_items)
 
 df_steam_games = pd.DataFrame(df_steam_games)
@@ -180,7 +182,33 @@ def developer_reviews_analysis(developer):
 
 
 
+def user_recommendation(user_id):
+    
+    user_predictions = test[test['user_id'] == user_id]
 
+    # Filter games not seen by the user
+    unseen_games = test[~test['item_id'].isin(user_predictions['item_id'])]
+
+    # Sort predictions in descending order
+    unseen_games = unseen_games.sort_values(by='predictions', ascending=False)
+
+    # Select the top 5 game recommendations
+    top_recommendations = unseen_games.head(5)
+
+    # Print the recommendations
+    game_list = []
+
+    # Suppose that top_recommendations is a pandas DataFrame
+    for _, row in top_recommendations.iterrows():
+        game_list.append(row['app_name'])
+
+    dictionary = {}
+
+    for i, game in enumerate(game_list, start=1):
+        option = f"option{i}"
+        dictionary[option] = game
+
+    return dictionary
 
 
 

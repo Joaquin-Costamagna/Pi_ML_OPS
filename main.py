@@ -4,14 +4,11 @@ from funciones import userdata
 #from funciones import UserForGenre --  NO PUDE LLEVARLA A CABO
 from funciones import best_developer_year
 from funciones import developer_reviews_analysis
-
+from funciones import user_recommendation
 
 app = FastAPI()
 
 
-@app.get("/")
-async def root():
-    return {"message": "Hello World"}
 
 @app.get("/best_developer_year/{year}")
 async def Best_developer_year(year: str):
@@ -51,3 +48,9 @@ async def developer_def(desarrollador: str):
 async def developer_def(desarrolladora: str):
     result5 = developer_reviews_analysis(desarrolladora)
     return result5 
+
+
+@app.get("/user_recommendation/{id_usuario}")
+async def user_recommendation(id_usuario: str):
+    result = user_recommendation(id_usuario)
+    return result
